@@ -2,4 +2,6 @@
 
 #### Screen Shots 
 
-<img src="Screenshot_1617450912.png" alt="Screenshot_1617450912" style="zoom: 25%;" /><img src="Screenshot_1617450896.png" alt="Screenshot_1617450896" style="zoom: 25%;" /><img src="Screenshot_1617450817.png" alt="Screenshot_1617450817" style="zoom: 25%;" />
+* <img src="Screenshot_1617450912.png" alt="Screenshot_1617450912" width='250px'" />
+* <img src="Screenshot_1617450896.png" alt="Screenshot_1617450896" width='250px'" />
+* <img src="Screenshot_1617450817.png" alt="Screenshot_1617450817" width='250px'" />
