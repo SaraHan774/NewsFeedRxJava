@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">한국경제 RSS 피드</string>
+    <string name="main_news">메인</string>
+    <string name="stock_news">증권</string>
+    <string name="news_image">news image</string>
+    <string name="content_page_placeholder">%d/%d</string>
+    <string name="check_your_network_connection">Check your network connection!</string>
+    <string name="society_news">사회</string>
+</resources>
