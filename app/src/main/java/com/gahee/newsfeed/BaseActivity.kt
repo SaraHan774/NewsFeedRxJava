@@ -19,13 +19,13 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onStart()
         publishProcessor = PublishProcessor.create()
         disposable = publishProcessor
-            .startWith(getConnectivityStatus(this))
-            .distinctUntilChanged()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { isOnline ->
-                if (isOnline) onOnline()
-                else onOffline()
-            }
+                .startWith(getConnectivityStatus(this))
+                .distinctUntilChanged()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { isOnline ->
+                    if (isOnline) onOnline()
+                    else onOffline()
+                }
         listenToNetworkConnectivity()
     }
 
@@ -35,8 +35,8 @@ abstract class BaseActivity : AppCompatActivity() {
         unregisterReceiver(broadCastReceiver)
     }
 
-    private fun listenToNetworkConnectivity(){
-        broadCastReceiver = object : BroadcastReceiver(){
+    private fun listenToNetworkConnectivity() {
+        broadCastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 publishProcessor.onNext(context?.let { getConnectivityStatus(it) })
             }

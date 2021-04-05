@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.gahee.cnn.databinding.NewsDetailBinding
+import com.gahee.newsfeed.databinding.NewsDetailBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

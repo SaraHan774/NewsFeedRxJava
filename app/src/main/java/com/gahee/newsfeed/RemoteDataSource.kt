@@ -18,30 +18,25 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 
-
 class NewsViewModel : BaseViewModel() {
     private val service = NewsService.create(Utils.HANKYUNG_BASE_URL)
-
-    private var _response: MutableLiveData<List<NewsItem>> = MutableLiveData()
-    val newsItems: LiveData<List<NewsItem>> = _response
 
     private var _channelResponse: MutableLiveData<ChannelResponse> = MutableLiveData()
     val channelInfo: LiveData<ChannelResponse> = _channelResponse
 
     fun fetchNewsByCategory(category: String) {
         val dis = service.fetchNewsByCategory(category)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .onErrorReturn {
-                RssResponse()
-            }
-            .doOnError {
-                Log.e(TAG, "fetchNewsByCategory: ${it.localizedMessage}")
-            }
-            .subscribe {
-                _channelResponse.postValue(it.channel)
-                _response.postValue(it.channel?.itemList)
-            }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .onErrorReturn {
+                    RssResponse()
+                }
+                .doOnError {
+                    Log.e(TAG, "fetchNewsByCategory: ${it.localizedMessage}")
+                }
+                .subscribe {
+                    _channelResponse.postValue(it.channel)
+                }
         add(dis)
     }
 
@@ -51,7 +46,7 @@ class NewsViewModel : BaseViewModel() {
 }
 
 @Suppress("UNCHECKED_CAST")
-class NewsViewModelFactory : ViewModelProvider.Factory{
+class NewsViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return NewsViewModel() as T
     }
@@ -78,12 +73,12 @@ class NewsService {
         fun create(baseUrl: String): NewsApi {
             if (!this::instance.isInitialized) {
                 instance =
-                    Retrofit.Builder()
-                        .baseUrl(baseUrl)
-                        .callFactory(OkHttpClient.Builder().build())
-                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                        .addConverterFactory(SimpleXmlConverterFactory.create())
-                        .build().create(NewsApi::class.java)
+                        Retrofit.Builder()
+                                .baseUrl(baseUrl)
+                                .callFactory(OkHttpClient.Builder().build())
+                                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                                .addConverterFactory(SimpleXmlConverterFactory.create())
+                                .build().create(NewsApi::class.java)
             }
             return instance
         }

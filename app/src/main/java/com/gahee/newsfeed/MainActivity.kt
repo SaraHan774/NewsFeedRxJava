@@ -3,7 +3,7 @@ package com.gahee.newsfeed
 import android.os.Bundle
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
-import com.gahee.cnn.databinding.ActivityMainBinding
+import com.gahee.newsfeed.databinding.ActivityMainBinding
 import com.gahee.newsfeed.Utils.Companion as Hankyung
 
 class MainActivity : BaseActivity(){
@@ -19,15 +19,12 @@ class MainActivity : BaseActivity(){
 
         newsViewModel = ViewModelProvider(this, NewsViewModelFactory())[NewsViewModel::class.java]
 
-        newsViewModel.newsItems.observe(this, { list ->
-            list?.let {
-                binding.mainViewPager.adapter = PagerRecyclerAdapter(it, this.supportFragmentManager)
-            }
-        })
-
         newsViewModel.channelInfo.observe(this, { channel ->
             channel?.copyright?.let {
                 binding.mainFooter.text = it
+            }
+            channel?.itemList?.let {
+                binding.mainViewPager.adapter = PagerRecyclerAdapter(it, this.supportFragmentManager)
             }
         })
     }
